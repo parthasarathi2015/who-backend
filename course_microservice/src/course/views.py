@@ -15,11 +15,11 @@ class CourseListView(APIView):
 
     def get(self, request):
         params = {}
-        if request.GET['page']:
+        if 'page' in request.GET:
             params["page"] = request.GET['page']
-        if request.GET['page_size']:
+        if 'page_size' in request.GET:
             params["page_size"] = request.GET['page_size']
-        if request.GET['fields']:
+        if 'fields' in request.GET:
             params["fields"] = request.GET['fields']
         re, status_code = self.get_courses(params)
         return Response(re, status=status_code)
@@ -49,19 +49,3 @@ class CourseListView(APIView):
                 if data:
                     result["results"].append(data)
         return result, status_code
-
-# class LoginView(APIView):
-#     authentication_classes = [TokenAuthentication]
-#     permission_classes = [AllowAny]
-
-#     def post(self, request):
-
-#         token_url = settings.AUTH_END_POINT+'token/'
-#         username = request.GET['username']
-#         password = request.GET['password']
-#         response = requests.post(token_url, data={'username': username, 'password': password})
-#         if response.status_code == 200:
-#             resp = json.loads(response.text)
-#             if "access" in resp:
-#                 token = resp['access']
-#                 headers = {'Authorization': f'Token {token}'}
