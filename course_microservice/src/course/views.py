@@ -54,32 +54,15 @@ class CourseListView(APIView):
     permission_classes = [AuthTokenPermission]
 
     def get(self, request):
-
-        token_url = settings.AUTH_END_POINT+'token/'
-        username = 'User001'
-        password = 'CU@123456'
-        response = requests.post(token_url, data={'username': username, 'password': password})
-        if response.status_code == 200:
-            resp = json.loads(response.text)
-            if "access" in resp:
-                token = resp['access']
-                headers = {'Authorization': f'Token {token}'}
-                print("header:",headers)
-
-                params = {}
-                if request.GET['page']:
-                    params["page"] = request.GET['page']
-                if request.GET['page_size']:
-                    params["page_size"] = request.GET['page_size']
-                if request.GET['fields']:
-                    params["fields"] = request.GET['fields']
-                re, status_code = self.get_courses(params)
-                return Response(re, status=status_code)
-                # courses_url = 'http://course-microservice.com/api/courses/'
-                # courses_response = requests.get(courses_url, headers=headers)
-                # if courses_response.status_code == 200:
-                #     return Response(courses_response.json())
-        return Response({'error': 'Unable to retrieve courses'}, status=response.status_code)
+        params = {}
+        if request.GET['page']:
+            params["page"] = request.GET['page']
+        if request.GET['page_size']:
+            params["page_size"] = request.GET['page_size']
+        if request.GET['fields']:
+            params["fields"] = request.GET['fields']
+        re, status_code = self.get_courses(params)
+        return Response(re, status=status_code)
 
     def get_courses(self, params):
         param_list = ""
