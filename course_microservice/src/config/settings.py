@@ -61,15 +61,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.TokenAuthentication',
     ],
 }
-# AUTHENTICATION_BACKENDS = [
-#     #  'course.authservice.CustomTokenAuthentication',
-#     #  'course.authservice.RemoteTokenAuthentication'
-# ]
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'course.authservice.RemoteTokenAuthentication',
-#     ],
-# }
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -148,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_END_POINT = 'http://localhost:8000/'
 
 COURSES_END_POINT = 'https://courses.edx.org/api/courses/v1/courses/'
+
+CUSTOM_TOKEN = 'dfksdfhdkjdffijK^&8gkjGHJHH^IUgkjgugf*&*TY'

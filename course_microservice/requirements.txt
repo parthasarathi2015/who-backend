@@ -2,3 +2,5 @@ djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
 pyjwt
+pytest-django
+pytest-html
